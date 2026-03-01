@@ -67,6 +67,8 @@ if uploaded_file is not None:
     df_results = pd.DataFrame(results)
 
     st.write("### Clause-Level Risk Analysis")
+    #st.dataframe(df_results)
+    df_results = df_results.astype(str)
     st.dataframe(df_results)
 
     high_risk_count = df_results[df_results["Predicted Risk"].isin(
