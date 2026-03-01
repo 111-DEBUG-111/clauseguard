@@ -9,18 +9,18 @@ st.title("ClauseGuard — Contract Risk Classification System")
 
 st.write("Upload a contract (.txt) or paste a clause for risk analysis.")
 
-# =============================
+   
 # Clause Segmentation Function
-# =============================
+   
 
 def segment_clauses(text):
     clauses = re.split(r'\n\d+\.|\n[A-Z][a-z]+:|\n\n', text)
     clauses = [c.strip() for c in clauses if len(c.strip()) > 50]
     return clauses
 
-# =============================
+   
 # Option 1: Single Clause
-# =============================
+   
 
 st.subheader("Single Clause Analysis")
 
@@ -39,9 +39,9 @@ if st.button("Analyze Clause"):
 #st.divider()
 st.markdown("---")
 
-# =============================
+   
 # Option 2: Full Contract Upload
-# =============================
+   
 
 st.subheader("Full Contract Analysis (.txt file)")
 

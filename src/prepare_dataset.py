@@ -3,9 +3,9 @@ import pandas as pd
 from pathlib import Path
 import re
 
-# ============================
+  
 # CONFIG
-# ============================
+  
 
 DATA_PATH = Path("data/raw/CUAD_v1.json")
 OUTPUT_PATH = Path("data/processed/cuad_processed.csv")
@@ -38,9 +38,9 @@ label_mapping = {
     "Third Party Beneficiary": "Standard Clause",
 }
 
-# ============================
+  
 # LOAD JSON
-# ============================
+  
 
 print("Loading CUAD_v1.json...")
 
@@ -51,9 +51,9 @@ contracts = data["data"]
 print(contracts)
 print(f"Total contracts found: {len(contracts)}")
 
-# ============================
+  
 # EXTRACT CLAUSES
-# ============================
+  
 
 rows = []
 
