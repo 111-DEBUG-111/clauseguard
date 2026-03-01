@@ -48,6 +48,7 @@ with open(DATA_PATH, "r", encoding="utf-8") as f:
     data = json.load(f)
 
 contracts = data["data"]
+print(contracts)
 print(f"Total contracts found: {len(contracts)}")
 
 # ============================
