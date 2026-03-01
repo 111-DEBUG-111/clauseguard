@@ -36,7 +36,8 @@ if st.button("Analyze Clause"):
     else:
         st.warning("Please enter a clause.")
 
-st.divider()
+#st.divider()
+st.markdown("---")
 
 # =============================
 # Option 2: Full Contract Upload
