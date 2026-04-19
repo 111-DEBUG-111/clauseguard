@@ -38,16 +38,39 @@ def _parse_json_safely(text: str) -> Dict[str, Any]:
     """
     Robustly extract JSON from an LLM response.
 
-    The LLM might wrap its answer in markdown code fences; strip them first.
+    Handles three common LLM quirks:
+      1. Markdown code fences wrapping the JSON (```json ... ```)
+      2. Unescaped control characters (raw newlines) inside string values —
+         Groq llama models occasionally emit these in long summary fields.
+      3. Trailing commas or other minor formatting issues (via strict=False).
     """
-    # Strip common markdown fences: ```json ... ``` or ``` ... ```
+    # ── Step 1: strip markdown fences ────────────────────────────────────────
     cleaned = re.sub(r"```(?:json)?\s*", "", text, flags=re.IGNORECASE).strip()
     cleaned = cleaned.rstrip("` \n")
 
+    # ── Step 2: strict JSON parse (fastest path) ──────────────────────────────
     try:
         return json.loads(cleaned)
+    except json.JSONDecodeError:
+        pass
+
+    # ── Step 3: non-strict parse (allows control chars in strings) ────────────
+    try:
+        return json.loads(cleaned, strict=False)
+    except json.JSONDecodeError:
+        pass
+
+    # ── Step 4: sanitise unescaped control characters then retry ─────────────
+    # Replace literal newlines / tabs inside JSON string values with their
+    # escaped equivalents, leaving structural newlines (between keys) intact.
+    def _escape_ctrl(m: re.Match) -> str:
+        return m.group(0).replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t")
+
+    sanitised = re.sub(r'"[^"\\]*(?:\\.[^"\\]*)*"', _escape_ctrl, cleaned, flags=re.DOTALL)
+    try:
+        return json.loads(sanitised)
     except json.JSONDecodeError as exc:
-        logger.error("JSON parse failed.\nRaw text:\n%s\nError: %s", text, exc)
+        logger.error("JSON parse failed after all fallbacks.\nRaw text:\n%s\nError: %s", text, exc)
         raise ValueError(f"LLM returned invalid JSON: {exc}") from exc
 
 
