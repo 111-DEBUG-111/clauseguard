@@ -345,6 +345,9 @@ Enable: already in `requirements.txt` — no extra install needed.
 
 ---
 
+## hosted link
+https://clauseguard-yvrrjxkvepdbmdse5juzxc.streamlit.app/
+
 ## 📄 License
 
 This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
