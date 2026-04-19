@@ -1,5 +1,17 @@
+# Python
 venv/
 __pycache__/
 *.pyc
-data/raw/.env
+*.pyo
+*.pyd
+.Python
+
+# Environment / secrets — NEVER commit these
 .env
+*.env
+
+# Data (large raw files)
+data/raw/
+
+# RAG index (auto-generated)
+data/rag_index/

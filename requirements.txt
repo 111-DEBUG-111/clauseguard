@@ -1,4 +1,4 @@
-# Phase 1 dependencies (kept for backward compatibility)
+# ── Core (Phase 1 — preserved) ───────────────────────────────────────────────
 pandas
 numpy
 scikit-learn
@@ -6,7 +6,6 @@ matplotlib
 seaborn
 streamlit
 joblib
-altair==4.2.2
 
 # ── Phase 2: Agentic AI (LangGraph + LLM) ────────────────────────────────────
 langchain>=0.2.0
@@ -15,9 +14,9 @@ langchain-openai>=0.1.0
 langchain-community>=0.2.0
 langgraph>=0.1.0
 
-# ── RAG support (optional — install if using the RAG module) ──────────────────
-faiss-cpu>=1.7.0
-tiktoken>=0.5.0
-
 # ── Utilities ─────────────────────────────────────────────────────────────────
 python-dotenv>=1.0.0
+tiktoken>=0.5.0
+
+# ── RAG (optional — uncomment if using agents/rag.py) ────────────────────────
+# faiss-cpu>=1.7.0
