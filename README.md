@@ -345,8 +345,10 @@ Enable: already in `requirements.txt` — no extra install needed.
 
 ---
 
-## hosted link
-https://clauseguard-yvrrjxkvepdbmdse5juzxc.streamlit.app/
+## 🔗 Links
+
+- **Hosted App**: https://clauseguard-yvrrjxkvepdbmdse5juzxc.streamlit.app/
+- **Technical Report (Overleaf)**: https://www.overleaf.com/read/wjqdcytjhhtp#51fcdd
 
 ## 📄 License
 
